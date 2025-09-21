@@ -1,15 +1,15 @@
-<script lang="ts" setup>
-import type { Warrant } from '@/components/app/tables/WarrantTable/data/schema'
+<script setup lang="ts">
+import type { Surrender } from '@/components/app/tables/SurrenderTable/data/schema'
 import type { BreadcrumbItem } from '@/types'
 import { Head } from '@inertiajs/vue3'
-import { columns } from '@/components/app/tables/WarrantTable/columns'
-import DataTable from '@/components/app/tables/WarrantTable/DataTable.vue'
+import { columns } from '@/components/app/tables/SurrenderTable/columns'
+import DataTable from '@/components/app/tables/SurrenderTable/DataTable.vue'
 import AppLayout from '@/layouts/AppLayout.vue'
 import { dashboard } from '@/routes'
-import { index } from '@/routes/warrants'
+import { index } from '@/routes/surrenders'
 
 interface Prop {
-    warrants: Warrant[]
+    surrenders: Surrender[]
 }
 
 const props = defineProps<Prop>()
@@ -20,7 +20,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: dashboard().url,
     },
     {
-        title: 'Warrants',
+        title: 'Surrender',
         href: index().url,
     },
 ]
@@ -28,10 +28,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
 
-    <Head title="Imprest Warrant - Warrants" />
+    <Head title="Imprest Warrant - Surrenders" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-            <DataTable :data="props.warrants" :columns="columns" />
+            <DataTable :data="props.surrenders" :columns="columns" />
         </div>
     </AppLayout>
 </template>

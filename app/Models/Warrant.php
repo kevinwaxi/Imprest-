@@ -3,11 +3,16 @@
 namespace App\Models;
 
 use App\Enums\WarrantStatus;
+use App\Observers\WarrantObserver;
 use App\Traits\HasAuditFields;
 use App\Traits\HasSecondaryUUID;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
+#[ObservedBy([WarrantObserver::class])]
 
 class Warrant extends Model
 {
@@ -63,6 +68,11 @@ class Warrant extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function surrender(): HasOne
+    {
+        return $this->hasOne(Surrender::class);
     }
 
     public function preparedBy(): BelongsTo

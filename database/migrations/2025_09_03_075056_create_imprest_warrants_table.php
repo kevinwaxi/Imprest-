@@ -115,6 +115,16 @@ return new class extends Migration
             $table->foreignId('performed_by')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
+
+        Schema::create('surrenders', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('warrant_id')->constrained()->cascadeOnDelete();
+            $table->string('doc_code')->unique();
+            $table->unsignedInteger('sequence_number')->unique();
+            $table->decimal('imprest_amount', 15, 2);
+            $table->decimal('actual_spent', 15, 2)->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -122,6 +132,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('surrenders');
         Schema::dropIfExists('warrant_logs');
         Schema::dropIfExists('warrants');
         Schema::dropIfExists('projects');
