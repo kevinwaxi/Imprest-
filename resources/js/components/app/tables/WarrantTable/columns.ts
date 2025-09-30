@@ -42,6 +42,34 @@ export const columns: ColumnDef<Warrant>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: 'prepared_by',
+    header: ({ column, table }) => h(DataTableColumnHeader, {
+      column,
+      title: 'Prepared By',
+      table, // Pass the table instance
+    }),
+    cell: ({ row }) => {
+      return h('div', { class: 'flex items-center gap-2' }, [
+        h('span', { class: 'text-sm font-medium leading-none' }, row.original.prepared_by?.name),
+      ])
+    },
+    enableHiding: true,
+  },
+  {
+    accessorKey: 'staff',
+    header: ({ column, table }) => h(DataTableColumnHeader, {
+      column,
+      title: 'Staff',
+      table, // Pass the table instance
+    }),
+    cell: ({ row }) => {
+      return h('div', { class: 'flex items-center gap-2' }, [
+        h('span', { class: 'text-sm font-medium leading-none' }, row.original.staff.name),
+      ])
+    },
+    enableHiding: true,
+  },
+  {
     accessorKey: 'created_at',
     header: ({ column, table }) => h(DataTableColumnHeader, {
       column,
@@ -51,20 +79,6 @@ export const columns: ColumnDef<Warrant>[] = [
     cell: ({ row }) => {
       return h('div', { class: 'flex items-center gap-2' }, [
         h('span', { class: 'text-sm font-medium leading-none' }, row.getValue('created_at')),
-      ])
-    },
-    enableHiding: true,
-  },
-  {
-    accessorKey: 'prepared_by',
-    header: ({ column, table }) => h(DataTableColumnHeader, {
-      column,
-      title: 'Prepared By',
-      table, // Pass the table instance
-    }),
-    cell: ({ row }) => {
-      return h('div', { class: 'flex items-center gap-2' }, [
-        h('span', { class: 'text-sm font-medium leading-none' }, row.getValue('prepared_by')),
       ])
     },
     enableHiding: true,

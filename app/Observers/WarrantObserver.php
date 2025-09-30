@@ -16,6 +16,9 @@ class WarrantObserver
             'warrant_id'     => $warrant->id,
             'imprest_amount' => $warrant->amount,
             'actual_spent'   => $warrant->amount,
+            'examination_by' => $warrant->checked_by,
+            'approved_by'    => $warrant->approved_by,
+            'authorized_by'  => $warrant->signed_by,
         ]);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Actions\Store;
 
@@ -17,7 +17,8 @@ readonly class StoreWarrantAction
      */
     final public function execute(array $data): void
     {
-        DB::transaction(function () use ($data): void {
+        $default = settings('authority');
+        DB::transaction(function () use ($data, $default): void {
             foreach ($data['warrants'] as $warrantData) {
                 Warrant::create([
                     'doc_number'           => $warrantData['doc_number'],
@@ -26,9 +27,9 @@ readonly class StoreWarrantAction
                     'department_id'        => $warrantData['department_id'] ?? null,
                     'project_id'           => $warrantData['project_id'] ?? null,
                     'prepared_by'          => $warrantData['prepared_by'] ?? null,
-                    'checked_by'           => $warrantData['checked_by'] ?? null,
-                    'approved_by'          => $warrantData['approved_by'] ?? null,
-                    'signed_by'            => $warrantData['signed_by'] ?? null,
+                    'checked_by'           => $default['examiner'],
+                    'approved_by'          => $default['approver'],
+                    'signed_by'            => $default['authorizer'],
                     'amount'               => $warrantData['amount'],
                     'purpose'              => $warrantData['purpose'] ?? null,
                     'remarks'              => $warrantData['remarks'] ?? null,

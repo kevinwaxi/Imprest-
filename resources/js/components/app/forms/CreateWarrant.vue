@@ -87,7 +87,7 @@ function closeCreateForm() {
     form.reset()
     commonFields.value = {
         account_id: '',
-        prepared_by: authUser,
+        prepared_by: authUser.id,
         project_id: '',
         amount: '',
         purpose: '',

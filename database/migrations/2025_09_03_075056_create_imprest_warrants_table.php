@@ -76,9 +76,9 @@ return new class extends Migration
 
             // Workflow Users
             $table->foreignId('prepared_by')->nullable()->constrained('users')->nullOnDelete();
-            $table->foreignId('checked_by')->nullable()->constrained('users')->nullOnDelete();
-            $table->foreignId('approved_by')->nullable()->constrained('users')->nullOnDelete();
-            $table->foreignId('signed_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->string('checked_by')->nullable();
+            $table->string('approved_by')->nullable();
+            $table->string('signed_by')->nullable();
 
             // Financials
             $table->decimal('amount', 15, 2);
@@ -123,6 +123,10 @@ return new class extends Migration
             $table->unsignedInteger('sequence_number')->unique();
             $table->decimal('imprest_amount', 15, 2);
             $table->decimal('actual_spent', 15, 2)->nullable();
+            // particulars
+            $table->string('examination_by');
+            $table->string('approved_by');
+            $table->string('authorized_by');
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\ImprestWarrant\ProjectController;
 use App\Http\Controllers\ImprestWarrant\StaffController;
 use App\Http\Controllers\ImprestWarrant\SurrenderController;
 use App\Http\Controllers\ImprestWarrant\WarrantController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -25,6 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('projects', ProjectController::class)->except(['create', 'edit']);
     Route::resource('warrants', WarrantController::class);
     Route::resource('surrenders', SurrenderController::class);
+    Route::get('app_settings', [SettingController::class, 'edit'])->name('app_settings.edit');
+    Route::post('app_settings', [SettingController::class, 'update'])->name('app_settings.update');
 
     // api
     require __DIR__ . '/web_api.php';

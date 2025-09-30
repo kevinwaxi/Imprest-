@@ -15,7 +15,7 @@ class SurrenderController extends Controller
      */
     public function index()
     {
-        $surrenders = SurrenderResource::collection(Surrender::with('warrant')->get());
+        $surrenders = SurrenderResource::collection(Surrender::with(['warrant.staff', 'warrant.project', 'warrant.preparedBy', 'warrant.department'])->get());
         return Inertia::render('imprest_warrant/surrenders', [
             'surrenders' => $surrenders,
         ]);

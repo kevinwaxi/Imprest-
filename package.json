@@ -31,6 +31,7 @@
     "tw-animate-css": "^1.2.5",
     "vue": "^3.5.13",
     "vue-i18n": "11",
+    "vue-number-format": "^1.3.1",
     "vue-to-print": "^1.5.1",
     "vue3-print-nb": "^0.1.4",
     "zod": "^4.1.5"

@@ -26,12 +26,12 @@ class WarrantResource extends JsonResource
                 'name' => $this->staff->name,
             ]),
 
-            'account'                => $this->whenLoaded('account', fn() => [
+            'account'              => $this->whenLoaded('account', fn() => [
                 'id'   => $this->account->id,
                 'name' => $this->account->name,
             ]),
 
-            'project'                => $this->whenLoaded('project', fn() => [
+            'project'              => $this->whenLoaded('project', fn() => [
                 'id'   => $this->project->id,
                 'name' => $this->project->name,
             ]),
@@ -43,7 +43,7 @@ class WarrantResource extends JsonResource
             'signed_by'            => UserResource::make($this->whenLoaded('signedBy')),
 
             // Financials
-            'amount'               => (int)$this->amount,
+            'amount'               => (int) $this->amount,
             'purpose'              => $this->purpose,
             'remarks'              => $this->remarks,
 
@@ -64,9 +64,9 @@ class WarrantResource extends JsonResource
             'created_by'           => $this->whenLoaded('creator', fn() => $this->creator?->only(['id', 'name'])),
             'updated_by'           => $this->whenLoaded('updater', fn() => $this->updater?->only(['id', 'name'])),
 
-            'created_at'           => $this->created_at?->toDateTimeString(),
-            'updated_at'           => $this->updated_at?->toDateTimeString(),
-            'deleted_at'           => $this->deleted_at?->toDateTimeString(),
+            'created_at'           => $this->created_at?->toFormattedDateString(),
+            'updated_at'           => $this->updated_at?->toFormattedDateString(),
+            'deleted_at'           => $this->deleted_at?->toFormattedDateString(),
         ];
     }
 }

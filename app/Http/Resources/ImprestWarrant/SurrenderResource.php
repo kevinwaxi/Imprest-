@@ -19,8 +19,12 @@ class SurrenderResource extends JsonResource
             'doc_code'        => $this->doc_code,
             'sequence_number' => $this->sequence_number,
             'warrant'         => WarrantResource::make($this->whenLoaded('warrant')),
-            'imprest_amount'  => $this->imprest_amount,
-            'actual_spent'    => $this->actual_spent,
+            'imprest_amount'  => (int) $this->imprest_amount,
+            'actual_spent'    => (int) $this->actual_spent,
+            'examiner'        => $this->examination_by,
+            'approver'        => $this->approved_by,
+            'authorizer'      => $this->authorized_by,
+
         ];
     }
 }
